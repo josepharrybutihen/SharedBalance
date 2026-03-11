@@ -1,0 +1,54 @@
+.dashboard{
+    padding:30px;
+    background:#f4f4f4;
+    min-height:100vh;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.menu span{
+    margin-left:20px;
+    cursor:pointer;
+}
+
+.summary{
+    display:flex;
+    margin-top:30px;
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:200px;
+}
+
+.green{
+    background:linear-gradient(90deg,#2c9b6f,#1e8a72);
+    color:white;
+}
+
+.groups{
+    margin-top:40px;
+}
+
+.empty{
+    background:#fff;
+    padding:40px;
+    text-align:center;
+    border-radius:10px;
+}
+
+.empty button{
+    margin-top:15px;
+    padding:10px 15px;
+    background:#2c9b6f;
+    color:white;
+    border:none;
+    border-radius:8px;
+}
