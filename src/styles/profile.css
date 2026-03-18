@@ -1,0 +1,170 @@
+.profile-container{
+  display:flex;
+  padding:40px;
+  background:#f5f5f5;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:200px;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-right:25px;
+  display:flex;
+  flex-direction:column;
+  gap:15px; /* ADD THIS */
+}
+
+.menu-item{
+  padding:10px;
+  border-radius:6px;
+  margin:0; /* REMOVE spacing */
+}
+
+.back-btn{
+  cursor:pointer;
+  margin-bottom:25px;
+  font-weight:500;
+}
+
+/* Sidebar menu items */
+.menu-item{
+  padding:12px 15px;
+  margin-bottom:10px;
+  cursor:pointer;
+  border-radius:6px;
+  border:1px solid #eaeaea;
+  transition:0.2s;
+}
+
+/* hover effect */
+.menu-item:hover{
+  background:#f4f4f4;
+}
+
+/* active page */
+.menu-item.active{
+  font-weight:bold;
+  background:#e8f5f1;
+  border:1px solid #2aa384;
+}
+
+/* logout button */
+.logout-btn{
+  background:#e31c1c;
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+/* PROFILE CARD */
+.profile-card{
+  flex:1;
+  background:white;
+  border-radius:10px;
+  padding:35px 40px;
+}
+
+/* PROFILE HEADER */
+.profile-header{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  margin-bottom:40px;
+}
+
+.avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+}
+
+.edit-photo{
+  margin-top:10px;
+  background:#2aa384;
+  color:white;
+  border:none;
+  padding:6px 14px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* FORM GRID */
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;   /* increased spacing */
+}
+
+/* inputs */
+.form-grid input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  margin-top:6px;
+}
+
+/* spacing between label and input */
+.form-grid label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:500;
+}
+
+/* BUTTONS */
+.profile-buttons{
+  margin-top:40px;
+  display:flex;
+  justify-content:flex-end;
+  gap:20px;
+}
+
+.discard-btn{
+  background:#e31c1c;
+  color:white;
+  border:none;
+  padding:12px 22px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.save-btn{
+  background:#2e8b57;
+  color:white;
+  border:none;
+  padding:12px 22px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.logo-img{
+  width:80px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: #e6f9f0;
+  color: #1b7f5a;
+  border: 1px solid #b6f2da;
+}
+
+.message.error {
+  background-color: #ffe6e6;
+  color: #b30000;
+  border: 1px solid #ffb3b3;
+}

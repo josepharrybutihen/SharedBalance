@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import API from "../services/api";          // Your API helper/axios instance
-import "../styles/register.css";            // CSS import
+import React, { useState, useEffect } from "react";
+import API from "../services/api";
+import "../styles/register.css";
 import { useNavigate } from "react-router-dom";
+import logo from "../asset/logo.png";
 
 function Register() {
   const [form, setForm] = useState({
@@ -10,8 +11,20 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
-  const [error, setError] = useState("");
+
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // success | error
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
+
+  // AUTO HIDE MESSAGE
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => setMessage(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,6 +32,7 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setMessage("");
 
     if (
       !form.fullName.trim() ||
@@ -26,37 +40,58 @@ function Register() {
       !form.password.trim() ||
       !form.confirmPassword.trim()
     ) {
-      setError("Please fill all fields.");
+      setMessage("Please fill all fields.");
+      setMessageType("error");
       return;
     }
 
     if (form.password !== form.confirmPassword) {
-      setError("Passwords do not match.");
+      setMessage("Passwords do not match.");
+      setMessageType("error");
       return;
     }
 
-    try {
-      const res = await API.post("/users/signup", form);
+    setLoading(true);
 
-      // Optionally save token or user info here if returned by your API
-      console.log(res.data);
-      alert("Registration successful!");
-      navigate("/");
+    try {
+      await API.post("/users/signup", form);
+
+      setMessage("Registration successful!");
+      setMessageType("success");
+
+      // Redirect after short delay
+      setTimeout(() => {
+        navigate("/login");
+      }, 1200);
+
     } catch (err) {
-      setError(err.response?.data?.errorInfo?.message || "Registration failed.");
+      setMessage(
+        err.response?.data?.errorInfo?.message || "Registration failed."
+      );
+      setMessageType("error");
     }
+
+    setLoading(false);
   };
 
   return (
     <div className="register-container">
+      
       <div className="register-left">
-        <h1>Join SharedBalance Community Now!</h1>
+        <img src={logo} alt="logo" className="logo-img" />
+        <h1>Join SharedBalance <br />Community Now!</h1>
         <p>Start splitting worries, not friendship</p>
       </div>
 
       <div className="register-right">
         <h2>Create your account</h2>
-        {error && <p className="error">{error}</p>}
+
+        {/* ✅ MESSAGE DISPLAY */}
+        {message && (
+          <div className={`message ${messageType}`}>
+            {message}
+          </div>
+        )}
 
         <form onSubmit={handleRegister}>
           <label>Name</label>
@@ -66,7 +101,6 @@ function Register() {
             placeholder="Enter your full name here"
             value={form.fullName}
             onChange={handleChange}
-            required
           />
 
           <label>Email</label>
@@ -76,7 +110,6 @@ function Register() {
             placeholder="Enter email address here"
             value={form.email}
             onChange={handleChange}
-            required
           />
 
           <label>Password</label>
@@ -86,7 +119,6 @@ function Register() {
             placeholder="******"
             value={form.password}
             onChange={handleChange}
-            required
           />
 
           <label>Confirm Password</label>
@@ -96,15 +128,16 @@ function Register() {
             placeholder="******"
             value={form.confirmPassword}
             onChange={handleChange}
-            required
           />
 
-          <button type="submit">Register</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </button>
         </form>
 
         <p className="login-link">
           Already have an account?
-          <span onClick={() => navigate("/")}> Log in</span>
+          <span onClick={() => navigate("/login")}> Log in</span>
         </p>
       </div>
     </div>

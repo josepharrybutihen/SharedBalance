@@ -1,0 +1,36 @@
+.history-container{
+  padding:40px;
+  background:#f5f5f5;
+  min-height:100vh;
+}
+
+.history-header{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.back-arrow{
+  font-size:28px;
+  cursor:pointer;
+}
+
+.history-table{
+  background:white;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.history-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  padding:15px;
+  border-bottom:1px solid #eee;
+}
+
+.history-row.header{
+  background:linear-gradient(to right,#1f8b6b,#2cb39a);
+  color:white;
+  font-weight:bold;
+}
