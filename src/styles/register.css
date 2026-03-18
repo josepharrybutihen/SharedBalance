@@ -13,6 +13,12 @@
     align-items:center;
 }
 
+.logo-img{
+  width:80px;
+  border-radius: 10px;
+  border: black 10px;
+}
+
 .register-right{
     width:50%;
     padding:60px;
@@ -57,4 +63,24 @@ button{
 .login-link span{
     color:#2c9b6f;
     cursor:pointer;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: #e6f9f0;
+  color: #1b7f5a;
+  border: 1px solid #b6f2da;
+}
+
+.message.error {
+  background-color: #ffe6e6;
+  color: #b30000;
+  border: 1px solid #ffb3b3;
 }

@@ -1,48 +1,80 @@
-import React, { useState } from "react";
-import API from "../services/api";       // axios instance or API helper
-import "../styles/login.css";             // CSS import
+import React, { useState, useEffect } from "react";
+import API from "../services/api";
+import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
+import logo from "../asset/logo.png";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // error message state
+
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // success | error
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
+
+  // AUTO HIDE MESSAGE
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => setMessage(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setMessage("");
 
-    if (email === "" || password === "") {
-      setError("Please fill all fields");
+    if (!email || !password) {
+      setMessage("Please fill all fields");
+      setMessageType("error");
       return;
     }
+
+    setLoading(true);
 
     try {
       const res = await API.post("/users/login", { email, password });
 
-      // Save token and user info from response
+      // SAVE TOKEN
       localStorage.setItem("token", res.data.payload.accessToken);
       localStorage.setItem("user", JSON.stringify(res.data.payload.account));
 
-      // Navigate to dashboard after successful login
-      navigate("/dashboard");
+      setMessage("Login successful!");
+      setMessageType("success");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000); // slight delay for UX
+
     } catch (err) {
       if (err.response) {
-        setError(err.response.data.errorInfo.message);
+        setMessage(err.response.data.errorInfo?.message || "Invalid credentials");
       } else {
-        setError("Server error. Please try again.");
+        setMessage("Server error. Please try again.");
       }
+      setMessageType("error");
     }
+
+    setLoading(false);
   };
 
   return (
     <div className="login-container">
+
       <div className="login-left">
-        <h1 className="logo">SharedBalance</h1>
+        <img src={logo} alt="logo" className="logo-img" />
+        <h1>SharedBalance</h1>
         <h2>Welcome Back</h2>
         <p>Log in to continue managing your expenses</p>
 
-        {error && <p className="error">{error}</p>}
+        {/* ✅ MESSAGE DISPLAY */}
+        {message && (
+          <div className={`message ${messageType}`}>
+            {message}
+          </div>
+        )}
 
         <form onSubmit={handleLogin}>
           <label>Email</label>
@@ -51,7 +83,6 @@ function Login() {
             placeholder="yourname@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
 
           <label>Password</label>
@@ -60,14 +91,15 @@ function Login() {
             placeholder="******"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
 
-          <button type="submit">Log in</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Log in"}
+          </button>
         </form>
 
         <p className="signup">
-          Don't have an account? 
+          Don't have an account?
           <span onClick={() => navigate("/register")}> Sign up</span>
         </p>
       </div>

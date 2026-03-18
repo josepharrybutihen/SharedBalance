@@ -1,0 +1,39 @@
+.sidebar{
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 260px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  z-index: 100;
+}
+
+.sidebar-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.sidebar-menu div{
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.sidebar-menu div:hover{
+  background:#f2f2f2;
+}
+
+.sidebar-menu .active{
+  background:#4CAF50;
+  color:white;
+}
+
+.logout{
+  color:red;
+}
