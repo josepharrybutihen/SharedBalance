@@ -9,6 +9,7 @@ import History from "./pages/history";
 import Profile from "./pages/profile";
 import Settings from "./pages/settings";
 import LandingPage from "./pages/landingpage";
+import GroupDetails from "./pages/groupDetails";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/settings" element={<Settings/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/groups/:groupId" element={<GroupDetails/>}/>
       </Routes>
     </Router>
   );

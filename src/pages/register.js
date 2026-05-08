@@ -6,7 +6,8 @@ import logo from "../asset/logo.png";
 
 function Register() {
   const [form, setForm] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -35,7 +36,8 @@ function Register() {
     setMessage("");
 
     if (
-      !form.fullName.trim() ||
+      !form.firstName.trim() ||
+      !form.lastName.trim() ||
       !form.email.trim() ||
       !form.password.trim() ||
       !form.confirmPassword.trim()
@@ -94,12 +96,21 @@ function Register() {
         )}
 
         <form onSubmit={handleRegister}>
-          <label>Name</label>
+          <label>First Name</label>
           <input
-            name="fullName"
+            name="firstName"
             type="text"
             placeholder="Enter your full name here"
-            value={form.fullName}
+            value={form.firstName}
+            onChange={handleChange}
+          />
+
+          <label>Last Name</label>
+          <input
+            name="lastName"
+            type="text"
+            placeholder="Enter your full name here"
+            value={form.lastName}
             onChange={handleChange}
           />
 
