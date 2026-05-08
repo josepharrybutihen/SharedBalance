@@ -27,7 +27,7 @@
 .menu {
   display: flex;
   gap: 40px;        /* space between items */
-  margin-left: 660px; /* slight offset from left edge */
+  margin-left: 550px; /* slight offset from left edge */
 }
 
 /* navbar items */
@@ -51,17 +51,25 @@
   border-bottom: 2px solid #2e8b57;
 }
 
-.summary{
-    display:flex;
-    margin-top:30px;
-    gap:20px;
+.dashboard-summary {
+  display: flex;
+  justify-content: flex-start;  /* or center if you prefer */
+  gap: 30px;                    /* 🔥 increase spacing */
+  margin-top: 30px;
+  background: transparent;
 }
 
-.card{
-    background:white;
-    padding:25px;
-    border-radius:10px;
-    width:200px;
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 220px;                 /* fixed size */
+  
+  /* ✨ make it feel like a floating card */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  
+  /* optional: subtle border */
+  border: 1px solid #eee;
 }
 
 .green{
@@ -97,6 +105,7 @@ top:0;
 left:0;
 width:100%;
 height:100vh;
+pointer-events: auto;
 background:rgba(0,0,0,0.35);
 
 display:flex;
@@ -111,7 +120,7 @@ z-index:1000;
 .modal-card{
 width:420px;
 background:white;
-
+pointer-events: auto;
 border-radius:12px;
 padding:25px;
 
@@ -180,35 +189,70 @@ border-color:#1abc9c;
 }
 
 /* categories */
-
-.category-section label{
-font-size:13px;
-color:#555;
+.categories {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;   /* prevent wrapping */
+  overflow-x: auto;    /* allow scroll on small screens */
+  margin: 10px 0;
 }
 
-.categories{
-display:flex;
-gap:10px;
-margin-top:5px;
+.category-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
-.categories button{
-font-size:18px;
-padding:8px 10px;
-
-border:none;
-border-radius:6px;
-
-background:#f3f3f3;
-cursor:pointer;
-transition:0.2s;
+.category-btn:hover {
+  transform: scale(1.1);  /* subtle zoom effect */
 }
 
-.categories button:hover{
-background:#1abc9c;
-color:white;
+.category-btn.selected .img-wrapper {
+  border: 2px solid #4CAF50;
 }
 
+.img-wrapper {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  transition: 0.2s;
+}
+
+.img-wrapper img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.group-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: white;
+  padding: 6px;
+  object-fit: contain;
+}
+
+.group-photo-large {
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 /* footer */
 
 .modal-footer{
@@ -244,6 +288,173 @@ background:#16a085;
   font-weight:600;
 }
 
+.user-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.user-card:hover {
+  background: #f3f3f3;
+}
+
+.user-card.selected {
+  background: #d0f0ff;
+}
+
+.user-card img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-item {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 12px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.group-item:hover {
+  background-color: #f5f5f5;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-icon {
+  font-size: 28px;
+  width: 40px;
+}
+
+.group-info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.amount-owed {
+  font-weight: 600;
+  color: #555;
+}
+
+.group-members {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.member-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+}
+
+.more-members {
+  font-size: 14px;
+  color: #888;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+/* 🔔 Notification container */
+.notif-container {
+  position: relative;
+  margin-left: 20px;
+}
+
+/* Bell */
+.notif-bell {
+  cursor: pointer;
+  font-size: 20px;
+  position: relative;
+}
+
+/* 🔴 Badge */
+.notif-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Dropdown */
+.notif-dropdown {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  z-index: 999;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Item */
+.notif-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.notif-item:hover {
+  background: #f5f5f5;
+}
+
+.notif-item p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Time */
+.time {
+  font-size: 11px;
+  color: gray;
+}
+
+/* Empty */
+.empty {
+  padding: 10px;
+  text-align: center;
+  color: gray;
+}
+
+.notif-item.unread {
+  background: #eef7ff;
+  font-weight: bold;
+}
 /* animation */
 
 @keyframes modalFade{

@@ -38,15 +38,28 @@ function Login() {
       const res = await API.post("/users/login", { email, password });
 
       // SAVE TOKEN
-      localStorage.setItem("token", res.data.payload.accessToken);
-      localStorage.setItem("user", JSON.stringify(res.data.payload.account));
+      // ✅ extract token safely (handles different backend formats)
+      const token =
+        res.data.payload?.accessToken ||
+        res.data.token ||
+        res.data.accessToken;
+
+      if (!token) {
+        throw new Error("No token received from server");
+      }
+
+      // ✅ save token
+      localStorage.setItem("token", token);
+
+      // optional: still save user if exists
+      if (res.data.payload?.account) {
+        localStorage.setItem("user", JSON.stringify(res.data.payload.account));
+      }
 
       setMessage("Login successful!");
       setMessageType("success");
 
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000); // slight delay for UX
+      navigate("/dashboard");
 
     } catch (err) {
       if (err.response) {

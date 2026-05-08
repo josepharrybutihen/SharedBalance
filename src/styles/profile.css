@@ -135,7 +135,7 @@
 }
 
 .save-btn{
-  background:#2e8b57;
+  background:#0b5a18;
   color:white;
   border:none;
   padding:12px 22px;
@@ -167,4 +167,73 @@
   background-color: #ffe6e6;
   color: #b30000;
   border: 1px solid #ffb3b3;
+}
+
+.readonly-input {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm-btn {
+  background:#0b5a18;
+  color:white;
+  border:none;
+  padding:12px 22px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.cancel-btn {
+  background:#e31c1c;
+  color:white;
+  border:none;
+  padding:12px 22px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.change-password-btn{
+  width:100%;
+  padding:12px;
+  margin-top: 5px;
+  margin-bottom: 60px;
+  border-radius:6px;
+  border:none;
+  background:#0b305a;
+  color:white;
+  cursor:pointer;
 }

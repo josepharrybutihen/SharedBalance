@@ -2,6 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/landing.css";
 import logo from "../asset/logo.png"
+import assets from "../asset/assets.png";
+import teamwork from "../asset/teamwork.png";
+import bill from "../asset/bill.png";
 
 function LandingPage() {
 
@@ -52,7 +55,9 @@ function LandingPage() {
       <div className="features">
 
         <div className="feature-card">
-          <div className="feature-icon"></div>
+          <div className="feature-icon">
+          <img src={bill} alt="Split bills" />
+          </div>
           <p>
             Easily split bills with friends and family after trips,
             dinners, or shared expenses.
@@ -60,7 +65,9 @@ function LandingPage() {
         </div>
 
         <div className="feature-card">
-          <div className="feature-icon"></div>
+          <div className="feature-icon">
+          <img src={assets} alt="Split bills" />
+          </div>
           <p>
             Track who paid and who owes in one simple dashboard
             without manual calculations.
@@ -68,7 +75,9 @@ function LandingPage() {
         </div>
 
         <div className="feature-card">
-          <div className="feature-icon"></div>
+          <div className="feature-icon">
+          <img src={teamwork} alt="Split bills" />
+          </div>
           <p>
             Keep your group finances transparent and settle
             payments fairly.

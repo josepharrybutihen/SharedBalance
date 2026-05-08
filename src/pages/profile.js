@@ -13,8 +13,16 @@ function Profile() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [showModal, setShowModal] = useState(false);
+
+  const [passwordData, setPasswordData] = useState({
+    newPassword: "",
+    confirmPassword: ""
+  });
+
   const [user, setUser] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -27,7 +35,8 @@ function Profile() {
       const res = await API.get("/users/profile");
 
       setUser({
-        fullName: res.data.payload.fullName || "",
+        firstName: res.data.payload.firstName || "",
+        lastName: res.data.payload.lastName || "",
         email: res.data.payload.email || "",
         password: "",
         confirmPassword: "",
@@ -46,12 +55,12 @@ function Profile() {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }
-}, [message]);
+    }
+    }, [message]);
 
-   useEffect(() => {
-  loadProfile();
-}, []);
+      useEffect(() => {
+      loadProfile();
+    }, []);
 
   const handleImageUpload = async (e) => {
   const file = e.target.files[0];
@@ -96,6 +105,39 @@ function Profile() {
   setMessage("Failed to save image");
   setMessageType("error");
 }
+};
+
+  const handlePasswordChange = (e) => {
+    setPasswordData({
+      ...passwordData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const updatePassword = async () => {
+
+  if (passwordData.newPassword !== passwordData.confirmPassword) {
+    setMessage("Passwords do not match");
+    setMessageType("error");
+    return;
+  }
+
+  try {
+    await API.put("/users/update", {
+      ...user,
+      password: passwordData.newPassword
+    });
+
+    setMessage("Password updated successfully!");
+    setMessageType("success");
+
+    setShowModal(false);
+    setPasswordData({ newPassword: "", confirmPassword: "" });
+
+  } catch {
+    setMessage("Failed to update password");
+    setMessageType("error");
+  }
 };
 
 
@@ -202,7 +244,7 @@ function Profile() {
           />
 
             <div>
-              <h2>{user.fullName}</h2>
+              <h2>{user.firstName} {user.lastName}</h2>
               <p>{user.email}</p>
               <input
               type="file"
@@ -224,12 +266,20 @@ function Profile() {
           <div className="form-grid">
 
             <div>
-              <label>Name</label>
+              <label>First Name</label>
               <input
-                name="fullName"
-                value={user.fullName}
+                name="firstName"
+                value={user.firstName}
                 onChange={handleChange}
-                placeholder="Edit username"
+              />
+            </div>
+
+            <div>
+              <label>Last Name</label>
+              <input
+                name="lastName"
+                value={user.lastName}
+                onChange={handleChange}
               />
             </div>
 
@@ -238,31 +288,20 @@ function Profile() {
               <input
                 name="email"
                 value={user.email}
-                onChange={handleChange}
-                placeholder="Edit email address"
+                readOnly
+                className="readonly-input"
               />
             </div>
 
             <div>
-              <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                onChange={handleChange}
-                placeholder="Change password"
-              />
+            <label>&nbsp;</label>
+            <button
+              className="change-password-btn"
+              onClick={() => setShowModal(true)}
+            >
+              Change Password
+            </button>
             </div>
-
-            <div>
-              <label>Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                onChange={handleChange}
-                placeholder="Confirm new password"
-              />
-            </div>
-
           </div>
 
           <div className="profile-buttons">
@@ -286,6 +325,45 @@ function Profile() {
         </div>
 
       </div>
+
+      {showModal && (
+  <div className="modal-overlay">
+    <div className="modal">
+
+      <h3>Change Password</h3>
+
+      <input
+        type="password"
+        name="newPassword"
+        placeholder="New Password"
+        value={passwordData.newPassword}
+        onChange={handlePasswordChange}
+      />
+
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        value={passwordData.confirmPassword}
+        onChange={handlePasswordChange}
+      />
+
+      <div className="modal-buttons">
+        <button className="confirm-btn" onClick={updatePassword}>
+          Confirm
+        </button>
+
+        <button
+          className="cancel-btn"
+          onClick={() => setShowModal(false)}
+        >
+          Cancel
+        </button>
+      </div>
+
+    </div>
+  </div>
+)}
 
     </>
   );

@@ -1,0 +1,191 @@
+.group-details {
+  padding: 30px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.group-details h2 {
+  margin-bottom: 5px;
+}
+
+.group-details p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* BACK BUTTON */
+.group-details button {
+  cursor: pointer;
+}
+
+/* ACTION BUTTONS */
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4cafef;
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.actions button:hover {
+  background-color: #3b9edc;
+}
+
+/* CALCULATOR */
+.calculator {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.calculator label {
+  font-weight: bold;
+}
+
+.calculator select,
+.calculator input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.calculator button {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.calculator button:hover {
+  background-color: #218838;
+}
+
+/* SUMMARY */
+.summary {
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.summary p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.summary table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* HEADER */
+.summary thead {
+  background: linear-gradient(to right, #4cafef, #3b9edc);
+  color: white;
+}
+
+.summary th {
+  text-align: left;
+  padding: 14px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* ROWS */
+.summary td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+  font-size: 14px;
+}
+
+/* STRIPED ROWS */
+.summary tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* HOVER EFFECT */
+.summary tbody tr:hover {
+  background-color: #f1f7ff;
+  transition: 0.2s;
+}
+
+/* PAYER STYLE */
+.summary td:first-child {
+  font-weight: 600;
+  color: #333;
+}
+
+/* AMOUNT STYLE */
+.summary td:nth-child(2) {
+  font-weight: bold;
+  color: #2e8b57;
+}
+
+/* BREAKDOWN BOX */
+.breakdown-box {
+  background: #f9f9f9;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+/* INDIVIDUAL ENTRY */
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+.breakdown-item span:first-child {
+  color: #555;
+}
+
+.breakdown-item span:last-child {
+  font-weight: 600;
+  color: #444;
+}
+
+.participants-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.participant-chip {
+  background: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.calculate-btn {
+  margin-top: 20px;
+  background: linear-gradient(to right, #2e8b57, #20b2aa);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+  font-weight: bold;
+  cursor: pointer;
+}

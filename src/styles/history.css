@@ -1,36 +1,60 @@
-.history-container{
-  padding:40px;
-  background:#f5f5f5;
-  min-height:100vh;
+.history-container {
+  padding: 30px;
 }
 
-.history-header{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  margin-bottom:20px;
+.history-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.back-arrow{
-  font-size:28px;
-  cursor:pointer;
+.back {
+  font-size: 24px;
+  cursor: pointer;
 }
 
-.history-table{
-  background:white;
-  border-radius:8px;
-  overflow:hidden;
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
 }
 
-.history-row{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
-  padding:15px;
-  border-bottom:1px solid #eee;
+thead {
+  background: linear-gradient(to right, #1e9e8f, #2bbbad);
+  color: black;
 }
 
-.history-row.header{
-  background:linear-gradient(to right,#1f8b6b,#2cb39a);
-  color:white;
-  font-weight:bold;
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+/* TRANSACTION BADGE */
+.txn-badge {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* PAID = RED */
+.txn-badge.paid {
+  background-color: #fdecea;
+  color: #e74c3c;
+}
+
+/* RECEIVED = GREEN */
+.txn-badge.received {
+  background-color: #eafaf1;
+  color: #27ae60;
+}
+
+/* EXPENSE (fallback) */
+.txn-badge.expense {
+  background-color: #f0f0f0;
+  color: #555;
 }
