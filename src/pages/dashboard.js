@@ -156,7 +156,7 @@ const uniqueMembers = [...new Set(allMembers)];
   useEffect(() => {
   if (!userEmail) return;
 
-  const socket = new SockJS("http://localhost:8080/ws");
+  const socket = new SockJS("https://sharedbalance-backend-1.onrender.com/api/v1");
 
   const client = new Client({
     webSocketFactory: () => socket,

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/api/v1",
+  baseURL: "https://sharedbalance-backend-1.onrender.com/api/v1",
 });
 
 // 🔥 ADD THIS (AUTOMATIC TOKEN ATTACH)
